@@ -4,7 +4,7 @@ import { Button, Input, Image } from '@rneui/base';
 import { StatusBar } from 'expo-status-bar';
 
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,7 +24,7 @@ const Login = () => {
                 <Input placeholder='Enter your Password' secureTextEntry type="Password" onChangeText={pass => setPassword(pass)} value={password} />
             </View>
             <Button title="Login" onPress={signIn} containerStyle={styles.button} />
-            <Button title="Register" type='outline' containerStyle={styles.button} />
+            <Button onPress={() => { navigation.navigate('Register') }} title="Register" type='outline' containerStyle={styles.button} />
             <View style={{ height: 100 }} />
         </KeyboardAvoidingView>
     )
