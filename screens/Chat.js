@@ -1,10 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 
-const Chat = () => {
+const Chat = ({ navigation, route }) => {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+
+        })
+    }, [navigation])
+
     return (
         <View>
-            <Text>Chat</Text>
+            <Text>{route.params.chatName}</Text>
         </View>
     )
 }
