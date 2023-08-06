@@ -1,14 +1,45 @@
 import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Input, Image } from '@rneui/base';
 import { StatusBar } from 'expo-status-bar';
+import { auth } from '../firebaseConfig';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    useEffect(() => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // User is signed in, see docs for a list of available properties
+            navigation.replace("Home")
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+          } else {
+            // User is signed out
+            // ...
+          }
+        });
+    }, []);
 
-    const signIn = () => { }
+
+    const signIn = () => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                if (user) {
+                    navigate.replace("Home")
+                }
+            })
+            .catch((error) => {
+                const errorCode = console.log(error.code);
+                const errorMessage = console.log(error.message)
+            });
+    }
 
 
     return (

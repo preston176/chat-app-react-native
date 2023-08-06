@@ -17,8 +17,16 @@ const Register = ({ navigation }) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // Do something with the user
-      })
+        user.updateProfile({
+            displayName: name,
+            photoURL: imageUrl || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+          }).then(() => {
+            // Profile updated successfully
+            // You can perform additional actions after updating the profile if needed
+          }).catch((error) => {
+            console.log(error.message)
+          });
+        })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
