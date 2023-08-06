@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ListItem, Avatar } from 'react-native-elements'
 
-const CustomListitem = () => {
+const CustomListitem = ({id, chatName, enterChat}) => {
     return (
         <ListItem>
             <Avatar
