@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 import { Button, Input, Image } from '@rneui/base';
 import { StatusBar } from 'expo-status-bar';
@@ -12,7 +12,7 @@ const Login = () => {
 
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView behavior='padding' style={styles.container}>
             <StatusBar style="light" />
             <Image source={{
                 uri: "https://png.pngtree.com/template/20190927/ourmid/pngtree-initial-p-chat-logo-design-vector-illustration-image_310613.jpg",
@@ -25,7 +25,8 @@ const Login = () => {
             </View>
             <Button title="Login" onPress={signIn} containerStyle={styles.button} />
             <Button title="Register" type='outline' containerStyle={styles.button} />
-        </View>
+            <View style={{ height: 100 }} />
+        </KeyboardAvoidingView>
     )
 }
 
@@ -33,12 +34,16 @@ export default Login
 
 const styles = StyleSheet.create({
     container: {
-        
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "white"
     },
     inputContainer: {
-
+        width: 300
     },
     button: {
-
+        width: 200,
+        marginTop: 10
     }
 })
