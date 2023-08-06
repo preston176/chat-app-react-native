@@ -25,7 +25,7 @@ const Login = ({ navigation }) => {
             </View>
             <Button title="Login" onPress={signIn} containerStyle={styles.button} />
             <Button onPress={() => { navigation.navigate('Register') }} title="Register" type='outline' containerStyle={styles.button} />
-            <View style={{ height: 100 }} />
+            <View style={{ height: 150 }} />
         </KeyboardAvoidingView>
     )
 }
