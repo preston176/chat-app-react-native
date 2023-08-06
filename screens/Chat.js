@@ -4,8 +4,9 @@ import React, { useLayoutEffect } from 'react'
 const Chat = ({ navigation, route }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
-
-        })
+            title: "Chat",
+            headerTitleAlign: "left"
+        });
     }, [navigation])
 
     return (
