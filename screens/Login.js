@@ -32,12 +32,12 @@ const Login = ({ navigation }) => {
                 // Signed in 
                 const user = userCredential.user;
                 if (user) {
-                    navigate.replace("Home")
+                    // navigation.replace("Home")
                 }
             })
             .catch((error) => {
                 const errorCode = console.log(error.code);
-                const errorMessage = console.log(error.message)
+                const errorMessage = alert(error.message)
             });
     }
 
