@@ -12,17 +12,17 @@ const Home = ({ navigation }) => {
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'chats'), (snapshot) => {
-          setChats(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              data: doc.data()
-            }))
-          );
+            setChats(
+                snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    data: doc.data()
+                }))
+            );
         });
-    
+
         // Clean up the subscription when the component unmounts
         return () => unsubscribe();
-      }, []);
+    }, []);
 
 
     const signOutUser = () => {
@@ -71,12 +71,12 @@ const Home = ({ navigation }) => {
     }, [navigation])
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
-            {chats.map(({id, data: {chatName }}) =>(
-                <CustomListitem key={id} id={id} chatName={chatName}/>
-            ))}
-      
+                {chats.map(({ id, data: { chatName } }) => (
+                    <CustomListitem key={id} id={id} chatName={chatName} />
+                ))}
+
             </ScrollView>
         </SafeAreaView>
     )
@@ -84,4 +84,8 @@ const Home = ({ navigation }) => {
 
 export default Home
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        height: "100%",
+    },
+})
