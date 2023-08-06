@@ -17,7 +17,6 @@ const Login = ({ navigation }) => {
             navigation.replace("Home")
             // https://firebase.google.com/docs/reference/js/auth.user
             const uid = user.uid;
-            console.log(user)
           } else {
             // User is signed out
             // ...
