@@ -52,7 +52,9 @@ const Login = ({ navigation }) => {
             />
             <View style={styles.inputContainer}>
                 <Input placeholder='Enter your email' autoFocus type="Email" value={email} onChangeText={text => setEmail(text)} />
-                <Input placeholder='Enter your Password' secureTextEntry type="Password" onChangeText={pass => setPassword(pass)} value={password} />
+                <Input placeholder='Enter your Password' secureTextEntry type="Password" onChangeText={pass => setPassword(pass)} value={password} 
+                    onSubmitEditing={signIn}
+                />
             </View>
             <Button title="Login" onPress={signIn} containerStyle={styles.button} />
             <Button onPress={() => { navigation.navigate('Register') }} title="Register" type='outline' containerStyle={styles.button} />
