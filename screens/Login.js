@@ -13,10 +13,17 @@ const Login = () => {
             }}
                 style={{ width: 200, height: 200 }}
             />
+            <View style={styles.inputContainer}>
+                <Input placeholder='Enter your email' />
+            </View>
         </View>
     )
 }
 
 export default Login
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    inputContainer: {
+
+    }
+})
