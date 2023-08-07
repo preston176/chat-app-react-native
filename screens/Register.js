@@ -72,6 +72,7 @@ const Register = ({ navigation }) => {
         style={styles.button}
         raised
         title="Create Account"
+        disabled={!email || !password || !name}
         onPress={register}
       />
     </KeyboardAvoidingView>
