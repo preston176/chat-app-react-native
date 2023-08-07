@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView, ScrollView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Avatar } from "react-native-elements";
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
@@ -8,7 +8,7 @@ const Chat = ({ navigation, route }) => {
   const [input, setInput] = useState('')
 
   const sendMessage = () => {
-
+    Keyboard.dismiss()
   }
 
   return (
