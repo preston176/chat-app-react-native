@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } fr
 import React, { useLayoutEffect, useEffect, useState } from 'react'
 import CustomListitem from '../components/CustomListitem'
 import { Avatar } from 'react-native-elements';
-import { auth, getAuth, signOut } from 'firebase/auth';
+import { auth, getAuth, signOut, currentUser } from 'firebase/auth';
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons"
 import { db } from '../firebaseConfig';
 import { collection, onSnapshot } from 'firebase/firestore';
 
 const Home = ({ navigation }) => {
+
     const [chats, setChats] = useState([]);
 
     useEffect(() => {
@@ -38,10 +39,11 @@ const Home = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "TecTalk",
-            headerStyle: { backgroundColor: "#fff" },
-            headerTitleStyle: { color: "black" },
+            headerStyle: { backgroundColor: "gray" },
+            headerTitleStyle: { color: "white" },
             headerTintColor: "black",
             headerLeft: () => (
+
                 <View style={{ marginLeft: 20, marginRight: 20 }}>
                     <TouchableOpacity onPress={signOutUser}>
                         <Avatar rounded source=
@@ -79,7 +81,7 @@ const Home = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <ScrollView>
                 {chats.map(({ id, data: { chatName } }) => (
-                    <CustomListitem key={id} id={id} chatName={chatName} 
+                    <CustomListitem key={id} id={id} chatName={chatName}
                         enterChat={enterChat}
                     />
                 ))}

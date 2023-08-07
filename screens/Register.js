@@ -3,13 +3,13 @@ import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Button, Input, Text } from '@rneui/base';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebaseConfig'; 
+import { auth } from '../firebaseConfig';
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const auth = getAuth(); // Move the auth state outside of the register function
 
   const register = () => {
@@ -18,15 +18,13 @@ const Register = ({ navigation }) => {
         // Signed in
         const user = userCredential.user;
         user.updateProfile({
-            displayName: name,
-            photoURL: imageUrl || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
-          }).then(() => {
-            // Profile updated successfully
-            // You can perform additional actions after updating the profile if needed
-          }).catch((error) => {
-            console.log(error.message)
-          });
-        })
+          displayName: name,
+          photoURL: imageUrl || "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+        }).then(() => {
+        }).catch((error) => {
+          console.log(error.message)
+        });
+      })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
