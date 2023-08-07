@@ -2,6 +2,10 @@ import { StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView, ScrollView,
 import React, { useLayoutEffect, useState } from 'react';
 import { Avatar } from "react-native-elements";
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { db, auth } from '../firebaseConfig';
+import firebase from 'firebase/app';
+import { doc, collection, addDoc, serverTimestamp } from "firebase/firestore"; 
+
 
 const Chat = ({ navigation, route }) => {
 
@@ -46,10 +50,24 @@ const Chat = ({ navigation, route }) => {
       )
     })
   }, [])
-
-  const sendMessage = () => {
+  const sendMessage = async () => {
     Keyboard.dismiss()
-  }
+    try {
+      const chatRef = doc(db, 'chats', route.params.id);
+      const messagesRef = collection(chatRef, 'messages');
+  
+      await addDoc(messagesRef, {
+        timestamp: serverTimestamp(),
+        message: input,
+        displayName: auth.currentUser.displayName,
+        email: auth.currentUser.email,
+        photoURL: auth.currentUser.photoURL
+      });
+    } catch (error) {
+      alert('Error sending message:', error);
+    }
+    setInput('')
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,6 +86,7 @@ const Chat = ({ navigation, route }) => {
                 placeholder='Message'
                 style={styles.textInput}
                 value={input}
+                onSubmitEditing={sendMessage}
                 onChangeText={text => setInput(text)}
               />
               <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
